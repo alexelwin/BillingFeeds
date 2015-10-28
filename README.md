@@ -1,6 +1,8 @@
 # billingFeedsApp
+Microservices were exposed for hybrid integration approach. This is a quick frontend for such services to expose billing feeds service functions to the user to help understand the api.
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
+
 version 0.12.1.
 
 ## Build & development
