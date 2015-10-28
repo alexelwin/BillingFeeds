@@ -1,0 +1,121 @@
+
+<!--Loading icon-->
+<div ng-include="'/views/_loading.html'" ng-hide="loadingState == false"></div>
+
+<!--Main screen-->
+<div ng-show="loadingState == false && isViewingResults == false">
+ 
+  <div class="row">
+    <div class="col-md-5">
+      <div class="input-group">
+        <label for="group">Traffic Group</label>
+        <select ng-model="selectedGroup" class="form-control" id ="group">
+          <option ng-repeat="option in ipgroups">{{option}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+<!--StartDate-->
+<div class="input-group">
+   <label for="start">start</label>
+   <input id="start"
+    type="date"
+    class="form-control"
+    datepicker-popup ng-model="start"
+    is-open="status.opened"
+    min-date="minDate"
+    max-date="maxDate"
+    datepicker-options="dateOptions"
+    date-disabled="disabled(date, mode)"
+    ng-required="true"
+    close-text="Close" />
+</div>
+
+<!--End Date-->
+<div class="input-group">
+   <label for="end">end</label>
+   <input id="end"
+    type="date"
+    class="form-control"
+    datepicker-popup ng-model="end"
+    is-open="status.opened"
+    min-date="minDate"
+    max-date="maxDate"
+    datepicker-options="dateOptions"
+    date-disabled="disabled(date, mode)"
+    ng-required="true"
+    close-text="Close" />
+</div>
+   
+<!--submit button-->
+<div class="row">
+ <div class="col-md-5">
+   <button class="btn btn-success navbar-btn" ng-click="generateReport()">Generate Report</button>
+  </div>
+</div>
+</div>
+
+
+<!--loading progress-->
+<div ng-include="'/views/_loading.html'" ng-show="loadingStateResults"></div>
+
+<!--Results View (Graph)-->
+<div ng-show="isViewingResults && loadingStateResults == false">
+
+  <!--close button-->
+  <a href="" ng-click="stopViewingResults()" class="pull-right">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </a>
+  <br>
+
+  <!--Radio Toggle (Graph src | Graph dest | Grid)-->
+  <div class="btn-group">
+    <button class="btn btn-primary" ng-click="changeMode('src')">src</button>
+    <button class="btn btn-primary" ng-click="changeMode('dest')">dest</button>
+    <button class="btn btn-primary" ng-click="changeMode('list')">list</button>
+  </div>
+
+  <!--Source Graph-->
+  <div ng-if="mode == 'src'">
+    <canvas id="srcChart" class="chart chart-line" chart-series="series" chart-data="srcData" chart-labels="labels" chart-legend="true" ></canvas>
+  </div>
+
+  <!--Destination Graph-->
+  <div ng-if="mode == 'dest'">
+    <canvas id="destChart" class="chart chart-line" chart-series="series" chart-data="destData" chart-labels="labels" chart-legend="true" ></canvas>
+  </div>
+  
+  <!--List raw totals-->
+  <div ng-show="mode == 'list'">
+    <table st-table="rawData" st-safe-src="rawDataDisplay" class="table table-striped">
+      <thead>
+       <tr>
+        <td colspan="1">
+          <input st-search="" class="form-control search-box" placeholder="search ..." type="text"/>
+        </td>
+        <td colspan="4" >
+         <div  class="text-left" st-pagination="" st-items-by-page="50" st-displayed-pages="5"></div>
+        </td>
+       </tr>
+       <tr>
+        <th>ip</th>
+        <th>date</th>
+        <th>total source</th>
+        <th>total dest</th>
+       </tr>
+       </tr> 
+      </thead>
+      <tbody>
+       <tr ng-repeat="row in rawData">
+        <td>{{row.IPAddress}}</td>
+        <td>{{row.ReportDate | date: format: 'dd/MM/yyyy'}}</td>
+        <td>{{row.SourceBytes}}</td>
+        <td>{{row.DestBytes}}</td>
+       </tr>
+      </tbody>
+    </table>
+    </div>
+
+</div>
+

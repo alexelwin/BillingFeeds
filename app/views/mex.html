@@ -1,0 +1,103 @@
+
+<!--Loading icon-->
+<div ng-include="'/views/_loading.html'" ng-hide="loadingState == false"></div>
+
+<!--Main screen-->
+<div ng-show="loadingState == false && isViewingResults == false">
+ 
+ <form name="mexForm" id="mexForm" novalidate>
+  <div class="row">
+    <div class="col-md-5">
+      <div  ng-class="{true: 'has-success', false: 'has-error'}[mexForm.companyId.$valid]">
+        <label for="companyId">Company Id (virtual id)</label>
+        <input type="number" id="companyId" name="companyId" class="form-control" ng-model="companyId" ng-required="true"/> 
+      </div>
+    </div>
+  </div>
+
+<!--StartDate-->
+<div class="input-group" ng-class="{true: '', false: ''}[mexForm.start.$valid]">
+   <label for="start">start</label>
+   <input id="start" name="start"
+    type="date"
+    class="form-control"
+    datepicker-popup ng-model="start"
+    is-open="status.opened"
+    min-date="minDate"
+    max-date="maxDate"
+    datepicker-options="dateOptions"
+    date-disabled="disabled(date, mode)"
+    ng-required="true"
+    close-text="Close" />
+</div>
+
+<!--End Date-->
+<div class="input-group" ng-class="{true: '', false: ''}[mexForm.end.$valid]">
+   <label for="end">end</label>
+   <input id="end" name="end"
+    type="date"
+    class="form-control"
+    datepicker-popup ng-model="end"
+    is-open="status.opened"
+    min-date="minDate"
+    max-date="maxDate"
+    datepicker-options="dateOptions"
+    date-disabled="disabled(date, mode)"
+    ng-required="true"
+    close-text="Close"
+ />
+</div>
+   
+<!--submit button-->
+<div class="row">
+ <div class="col-md-5">
+   <button class="btn btn-success navbar-btn" ng-click="generateReport()" ng-disabled="mexForm.$valid == false">Generate Report</button>
+  </div>
+</div>
+</div>
+</form>
+
+  
+  <!--List raw totals-->
+  <div ng-show="isViewingResults">
+    
+    <!--close button-->
+    <a href="" ng-click="stopViewingResults()" class="pull-right">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </a>
+    <br>
+
+    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+      <thead>
+       <tr>
+        <td colspan="4">
+         <div class="text-left" st-pagination="" st-items-by-page="50" st-displayed-pages="5"></div>
+        </td>
+       </tr>
+       <tr>
+        <th>id</th>
+        <th>greencode</th>
+        <th>domain</th>
+        <th>product code</th>
+        <th>quantity</th>
+        <th>amount</th>
+        <th>description</th>
+       </tr>
+       </tr> 
+      </thead>
+      <tbody>
+       <tr ng-repeat="row in displayedCollection">
+        <td>{{row.VirtualId}}</td>
+        <td>{{row.Greencode}}</td>
+        <td>{{row.Domain}}</td>
+        <td>{{row.Product_Code}}</td>
+        <td>{{row.Quantity}}</td>
+        <td>{{row.Amount}}</td>
+        <td>{{row.Description}}</td>
+       </tr>
+      </tbody>
+    </table>
+    </div>
+
+</div>
+

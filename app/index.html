@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="billingFeedsApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <div class="header">
+    <!--Mobile Navbar-->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              <img src="/images/webcentral.png" >&nbsp;
+          </div>
+ 
+          <!--Normal Navbar-->
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li  ui-sref-active="active">
+                <a ng-href="#/iptraffic">IP Traffic</a>
+              </li>
+              <li>
+                <a ng-href="#/mex">MEX</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+</div>
+
+
+    <div class="container">
+    <div ui-view=""</div>
+    </div>
+<!--<div class="footer">
+      
+        <p><span class="glyphicon glyphicon-education">&nbsp</span>Sponsored by Alex Elwin</p>
+      
+    </div>
+-->
+  
+    <!--google font-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/authService.js"></script>
+        <script src="scripts/services/authenticationInterceptor.js"></script>
+        <script src="scripts/controllers/iptrafficCtrl.js"></script>
+        <script src="scripts/controllers/mexCtrl.js"></script>
+        <script src="scripts/services/iptrafficService.js"></script>
+        <script src="scripts/controllers/loginCtrl.js"></script>
+        <script src="scripts/services/mexService.js"></script>
+        <script src="scripts/services/ipGroupService.js"></script>
+        <script src="scripts/services/proxyInterceptor.js"></script>
+        <script src="scripts/services/appSettingsService.js"></script>
+        <script src="scripts/services/cacheService.js"></script>
+        <script src="scripts/utils/smart-table.js"></script>
+        
+        <!-- endbuild -->
+</body>
+</html>

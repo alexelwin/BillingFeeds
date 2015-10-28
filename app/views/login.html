@@ -1,0 +1,36 @@
+
+
+<form role="form" name="loginForm" novalidate>
+  
+ <!--Loading screen-->
+  <div ng-include="'/views/_loading.html'" ng-show="loadingState"></div>
+
+  <!--main screen-->
+  <div ng-show="loadingState == false">
+    <!--Username-->
+    <div class="form-group" ng-class="{true: 'has-success', false: 'has-error'}[loginForm.user.$valid]">
+      <label for="user">MIT User</label>
+      <input class="form-control" name="user" ng-model="user" ng-minlength="3" ng-required="true" novalidate>
+    </div>
+    
+    
+    <!--Password-->
+    <div class="form-group" ng-class="{true: 'has-success', false: 'has-error'}[loginForm.pass.$valid]">
+      <label for="pass">Password:</label>
+      <input class="form-control" type="password" ng-model="pass" name="pass" ng-required="true" ng-minlength="3"  novalidate>
+    </div>
+
+
+    <!--Error login-->
+    <div class="alert alert-danger" role="alert" ng-show="loginError == true">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Invalid login. Please try again.
+  </div>
+
+
+   <!--Submit-->
+    <button  class="btn btn-default"  ng-disabled="loginForm.$invalid"  ng-click="attemptLogin()">Submit</button>
+
+</div>
+</form>
